@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy | Social Commerce Live</title>
+<meta name="description" content="Privacy policy for Social Commerce Live, operated by FamHam Ltd, including how our internal TikTok publishing tool handles data.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,700&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root {
+  --black:#0b0b0b; --off:#111111; --panel:#161616; --red:#e02020; --red-dim:#9b1616;
+  --cream:#f0ebe2; --muted:#6a6560; --border:rgba(255,255,255,0.07); --gold:#c8922a;
+}
+body { background:var(--black); color:var(--cream); font-family:'Barlow',sans-serif; font-weight:300; line-height:1.65; overflow-x:hidden; cursor:none; }
+.cursor { position:fixed; width:10px; height:10px; background:var(--red); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width 0.2s,height 0.2s; mix-blend-mode:difference; }
+.cursor.grow { width:40px; height:40px; background:var(--cream); }
+.grain { position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity:0.04; pointer-events:none; z-index:9998; }
+
+nav { position:fixed; top:0; left:0; right:0; z-index:1000; padding:0 48px; height:68px; display:flex; align-items:center; justify-content:space-between; background:rgba(11,11,11,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+.nav-logo { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; color:var(--cream); text-decoration:none; }
+.nav-logo .dot { color:var(--red); }
+.nav-links { display:flex; align-items:center; gap:32px; list-style:none; }
+.nav-links a { font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover { color:var(--cream); }
+.nav-cta { background:var(--red); color:#fff !important; padding:8px 20px; font-size:11px !important; }
+.nav-cta:hover { background:var(--red-dim) !important; }
+
+@keyframes riseIn { from{opacity:0;transform:translateY(24px);} to{opacity:1;transform:translateY(0);} }
+
+.page-header {
+  padding: 140px 48px 72px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 80% 50%, rgba(224,32,32,0.06) 0%, transparent 60%);
+}
+
+.page-header-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 2; }
+
+.page-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+}
+.page-label::before { content:''; display:inline-block; width:24px; height:1px; background:var(--gold); }
+
+.page-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 9vw, 120px);
+  line-height: 0.9; letter-spacing: 2px; color: var(--cream);
+  margin-bottom: 24px;
+  opacity: 0; animation: riseIn 0.9s ease forwards 0.2s;
+}
+
+.page-header h1 span { color: var(--red); }
+
+.page-header .intro {
+  font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 560px;
+  opacity: 0; animation: riseIn 0.9s ease forwards 0.4s;
+}
+
+.page-header .last-updated {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(106,101,96,0.5); margin-top: 16px;
+  opacity: 0; animation: riseIn 0.9s ease forwards 0.5s;
+}
+
+/* CONTENT */
+.content-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 72px 48px 100px;
+}
+
+.toc {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 32px 36px;
+  margin-bottom: 64px;
+}
+
+.toc h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+}
+
+.toc ol {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 8px;
+  counter-reset: toc-counter;
+}
+
+.toc ol li {
+  counter-increment: toc-counter;
+  display: flex; align-items: baseline; gap: 12px;
+}
+
+.toc ol li::before {
+  content: counter(toc-counter, decimal-leading-zero);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px; color: var(--red); flex-shrink: 0;
+}
+
+.toc ol li a {
+  font-size: 14px; color: rgba(240,235,226,0.55);
+  text-decoration: none; transition: color 0.2s;
+}
+
+.toc ol li a:hover { color: var(--cream); }
+
+/* SECTIONS */
+.tc-section {
+  margin-bottom: 56px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tc-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.tc-section h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1; letter-spacing: 1px;
+  color: var(--cream); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 16px;
+}
+
+.tc-section h2 .section-num {
+  font-size: 14px; color: var(--red);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; letter-spacing: 2px;
+  flex-shrink: 0;
+}
+
+.tc-section p {
+  font-size: 15px; color: rgba(240,235,226,0.65);
+  line-height: 1.8; margin-bottom: 14px; max-width: 100%;
+}
+
+.tc-section p:last-child { margin-bottom: 0; }
+
+.tc-section ul {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 10px;
+  margin: 14px 0;
+}
+
+.tc-section ul li {
+  font-size: 15px; color: rgba(240,235,226,0.65);
+  line-height: 1.7; padding-left: 20px; position: relative;
+}
+
+.tc-section ul li::before {
+  content: '→'; position: absolute; left: 0;
+  color: var(--red); font-size: 12px; top: 4px;
+}
+
+/* HIGHLIGHT BOX */
+.highlight-box {
+  background: rgba(224,32,32,0.06);
+  border: 1px solid rgba(224,32,32,0.2);
+  border-left: 3px solid var(--red);
+  padding: 24px 28px;
+  margin: 24px 0;
+}
+
+.highlight-box h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--red); margin-bottom: 10px;
+}
+
+.highlight-box p {
+  font-size: 14px; color: rgba(240,235,226,0.7);
+  line-height: 1.7; margin: 0 !important;
+}
+
+.gold-box {
+  background: rgba(200,146,42,0.06);
+  border: 1px solid rgba(200,146,42,0.2);
+  border-left: 3px solid var(--gold);
+  padding: 24px 28px;
+  margin: 24px 0;
+}
+
+.gold-box h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+}
+
+.gold-box p {
+  font-size: 14px; color: rgba(240,235,226,0.7);
+  line-height: 1.7; margin: 0 !important;
+}
+
+/* CONTACT */
+.contact-strip {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 36px;
+  margin-top: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.contact-strip h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 1px; color: var(--cream); margin-bottom: 6px;
+}
+
+.contact-strip p { font-size: 14px; color: var(--muted); margin: 0; max-width: 100%; }
+
+.contact-strip a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: #fff; background: var(--red); padding: 12px 28px;
+  text-decoration: none; transition: background 0.2s; flex-shrink: 0;
+}
+
+.contact-strip a:hover { background: var(--red-dim); }
+
+/* FOOTER */
+footer { background:#080808; padding:48px; border-top:1px solid var(--border); }
+.footer-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; }
+.footer-brand { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:2px; color:var(--cream); margin-bottom:10px; }
+.footer-brand span { color:var(--red); }
+footer p { font-size:13px; color:var(--muted); line-height:1.6; max-width:100%; }
+.footer-nav h4 { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:16px; }
+.footer-nav ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-nav a { font-size:14px; color:rgba(240,235,226,0.5); text-decoration:none; transition:color 0.2s; }
+.footer-nav a:hover { color:var(--cream); }
+.footer-bottom { max-width:1100px; margin:32px auto 0; padding-top:24px; border-top:1px solid var(--border); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.footer-bottom p { font-size:12px; color:rgba(106,101,96,0.6); margin:0; }
+
+@media(max-width:768px){
+  nav{padding:0 24px;} .nav-links{display:none;}
+  .page-header{padding:110px 24px 56px;}
+  .content-wrap{padding:48px 24px 72px;}
+  .contact-strip{flex-direction:column;}
+  .footer-inner{grid-template-columns:1fr; gap:28px;} footer{padding:40px 24px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="grain"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Social Commerce <span class="dot">Live.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="june-2026.html">5 June 2026</a></li>
+    <li><a href="early-access.html" class="nav-cta">Register for the Next One</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-label">Legal</div>
+    <h1>Privacy <span>Policy</span></h1>
+    <p class="intro">This policy explains what personal data Social Commerce Live collects, how we use it, and how our internal TikTok publishing tool works. We keep it short and plain on purpose.</p>
+    <p class="last-updated">Last updated: October 2026</p>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <div class="toc">
+    <h3>Contents</h3>
+    <ol>
+      <li><a href="#who">Who We Are</a></li>
+      <li><a href="#collect">What We Collect</a></li>
+      <li><a href="#use">How We Use It</a></li>
+      <li><a href="#tiktok">Our TikTok Publishing Tool</a></li>
+      <li><a href="#sharing">Sharing and Retention</a></li>
+      <li><a href="#rights">Your Rights</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <div class="tc-section" id="who">
+    <h2><span class="section-num">01</span> Who We Are</h2>
+    <p>Social Commerce Live is an event series operated by FamHam Ltd, a company registered in England and Wales. FamHam Ltd is the data controller for the personal data described in this policy. References to "we", "us" and "our" mean FamHam Ltd.</p>
+  </div>
+
+  <div class="tc-section" id="collect">
+    <h2><span class="section-num">02</span> What We Collect</h2>
+    <p>When you buy a ticket or register your interest in an event, we collect:</p>
+    <ul>
+      <li>Your name and email address.</li>
+      <li>Your TikTok handle, where you choose to provide it.</li>
+      <li>Payment confirmation details from our payment provider. We do not see or store your full card number.</li>
+    </ul>
+    <p>We do not knowingly collect data from anyone under 18.</p>
+  </div>
+
+  <div class="tc-section" id="use">
+    <h2><span class="section-num">03</span> How We Use It</h2>
+    <ul>
+      <li>To process your ticket purchase and send confirmation.</li>
+      <li>To send event information, updates and logistics before the event.</li>
+      <li>To contact priority list members when tickets go on sale.</li>
+      <li>To send post-event communications where relevant.</li>
+    </ul>
+    <p>Our legal bases are performance of a contract (your ticket), legitimate interests (running the event) and your consent where we ask for it, which you can withdraw at any time.</p>
+  </div>
+
+  <div class="tc-section" id="tiktok">
+    <h2><span class="section-num">04</span> Our TikTok Publishing Tool</h2>
+    <p>We run a small internal tool, called "Des's Deals Auto Poster", that helps us prepare content for our own TikTok account. It uses TikTok's Login Kit and Content Posting API.</p>
+
+    <div class="gold-box">
+      <h4>In Plain Terms</h4>
+      <p>The tool is used only by us, only on our own TikTok account. It uploads our finished videos to that account as drafts. We review each draft in TikTok and publish it ourselves. It never posts publicly on its own.</p>
+    </div>
+
+    <ul>
+      <li>When we sign in with TikTok, we use the basic profile permission (user.info.basic) to confirm which account is connected, and the video upload permission (video.upload) to save drafts.</li>
+      <li>The tool only ever acts on our own account. It does not access, collect or store personal data about other TikTok users, viewers or followers.</li>
+      <li>Access tokens issued by TikTok are kept securely on our own systems and are used for nothing else.</li>
+      <li>We do not sell, rent or share any TikTok data with third parties.</li>
+      <li>You can disconnect the tool at any time in TikTok under Settings and privacy, Security and permissions, Apps and services, which revokes its access immediately. We will also delete any stored tokens on request.</li>
+    </ul>
+  </div>
+
+  <div class="tc-section" id="sharing">
+    <h2><span class="section-num">05</span> Sharing and Retention</h2>
+    <p>We do not sell your personal data. We share it only with service providers who help us run the event, such as ticketing, payment and email providers, and only so they can do that job. Your data is held securely in line with UK GDPR.</p>
+    <p>We keep ticket and registration data for as long as needed to run the event and deal with any queries afterwards, and then delete or anonymise it unless the law requires us to keep it longer.</p>
+  </div>
+
+  <div class="tc-section" id="rights">
+    <h2><span class="section-num">06</span> Your Rights</h2>
+    <p>Under UK GDPR you can ask us to access, correct or delete your personal data, to restrict or object to how we use it, and to receive a copy of it. You can also complain to the Information Commissioner's Office at ico.org.uk if you are unhappy with how we have handled your data.</p>
+  </div>
+
+  <div class="tc-section" id="contact">
+    <h2><span class="section-num">07</span> Contact</h2>
+    <p>For any privacy question or to exercise your rights, contact us at the address below. We aim to respond within five working days.</p>
+  </div>
+
+  <div class="contact-strip">
+    <div>
+      <h3>Get in Touch</h3>
+      <p>For privacy questions, data requests, or to revoke access for our TikTok tool.</p>
+    </div>
+    <a href="mailto:hello@socialcommercelive.com">hello@socialcommercelive.com</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Social Commerce <span>Live.</span></div>
+      <p>Operated by FamHam Ltd. A community-led event for creators serious about social commerce.</p>
+    </div>
+    <div class="footer-nav">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="june-2026.html">5 June 2026</a></li>
+        <li><a href="early-access.html">Register for the Next One</a></li>
+        <li><a href="terms.html">Terms and Conditions</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <h4>Legal</h4>
+      <p>FamHam Ltd<br>Registered in England and Wales<br>socialcommercelive.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Social Commerce Live, operated by FamHam Ltd. All rights reserved.</p>
+    <p>socialcommercelive.com</p>
+  </div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', function(e) { cursor.style.left=e.clientX+'px'; cursor.style.top=e.clientY+'px'; });
+  document.querySelectorAll('a,button').forEach(function(el) {
+    el.addEventListener('mouseenter',function(){cursor.classList.add('grow');});
+    el.addEventListener('mouseleave',function(){cursor.classList.remove('grow');});
+  });
+</script>
+</body>
+</html>
